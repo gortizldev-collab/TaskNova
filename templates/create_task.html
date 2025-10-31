@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Nueva Tarea{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-card">
+        <h1>Crear Tarea</h1>
+        
+        <form method="POST" class="task-form">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="due_date">Fecha límite</label>
+                    <input type="date" id="due_date" name="due_date">
+                </div>
+                
+                <div class="form-group">
+                    <label for="priority">Prioridad</label>
+                    <select id="priority" name="priority">
+                        <option value="baja">Baja</option>
+                        <option value="media" selected>Media</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Crear Tarea</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

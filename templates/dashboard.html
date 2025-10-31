@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <!-- Resumen -->
+    <div class="summary-card">
+        <h2>Resumen</h2>
+        <div class="summary-content">
+            <div class="user-info">
+                <strong>{{ user.name }}</strong>
+            </div>
+            <div class="task-stats">
+                <div class="stat">
+                    <span class="stat-number">{{ completed_tasks|length }}/{{ tasks|length }}</span>
+                    <span class="stat-label">Tareas completadas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">{{ pending_tasks|length }}</span>
+                    <span class="stat-label">Tareas pendientes</span>
+                </div>
+            </div>
+            <a href="{{ url_for('create_task') }}" class="btn btn-primary">Nueva tarea</a>
+        </div>
+    </div>
+
+    <!-- Lista de Tareas -->
+    <div class="tasks-section">
+        <h2>Tus Tareas</h2>
+        
+        {% if tasks %}
+        <div class="tasks-grid">
+            {% for task in tasks %}
+            <div class="task-card {{ task.priority }} {{ task.status }}">
+                <div class="task-header">
+                    <h3>{{ task.title }}</h3>
+                    <span class="priority-badge {{ task.priority }}">
+                        {{ task.priority|title }}
+                    </span>
+                </div>
+                
+                {% if task.description %}
+                <p class="task-description">{{ task.description }}</p>
+                {% endif %}
+                
+                <div class="task-meta">
+                    {% if task.due_date %}
+                    <span class="due-date">
+                        📅 {{ task.due_date.strftime('%d/%m/%Y') }}
+                    </span>
+                    {% endif %}
+                    <span class="status {{ task.status }}">
+                        {{ task.status|title }}
+                    </span>
+                </div>
+                
+                <div class="task-actions">
+                    {% if task.status != 'completada' %}
+                    <a href="{{ url_for('update_task_status', task_id=task.id, status='completada') }}" 
+                       class="btn btn-success btn-sm">✓ Completar</a>
+                    {% endif %}
+                    
+                    {% if task.status != 'en progreso' and task.status != 'completada' %}
+                    <a href="{{ url_for('update_task_status', task_id=task.id, status='en progreso') }}" 
+                       class="btn btn-warning btn-sm">⏳ En Progreso</a>
+                    {% endif %}
+                    
+                    <a href="{{ url_for('delete_task', task_id=task.id) }}" 
+                       class="btn btn-danger btn-sm" 
+                       onclick="return confirm('¿Eliminar esta tarea?')">🗑️ Eliminar</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <p>No tienes tareas aún. <a href="{{ url_for('create_task') }}">Crea tu primera tarea</a></p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

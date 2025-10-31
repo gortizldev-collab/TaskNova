@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Configuración{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-card">
+        <h1>Configuración</h1>
+        
+        <form method="POST" class="settings-form">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" value="{{ user.name }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Nueva Contraseña (dejar en blanco para no cambiar)</label>
+                <input type="password" id="password" name="password">
+            </div>
+            
+            <div class="form-group">
+                <label for="theme">Tema</label>
+                <select id="theme" name="theme">
+                    <option value="light" {% if user.theme == 'light' %}selected{% endif %}>Claro</option>
+                    <option value="dark" {% if user.theme == 'dark' %}selected{% endif %}>Oscuro</option>
+                </select>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

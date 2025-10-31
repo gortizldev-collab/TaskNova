@@ -101,7 +101,7 @@ TaskNova/
     └── css/
         └── style.css
 ```
-### 🖼️ Uso de la Aplicacion
+### 👤Uso de la Aplicacion
 **-Registro:** Crea una cuenta con nombre, email y contraseña
 
 **-Login:** Inicia sesión con tus credenciales
@@ -113,7 +113,7 @@ TaskNova/
 **Gestión:** Cambiar estado, filtrar y ordenar
 
 **-Configuración:** Cambiar tema o contraseña
-### 👤 Capturas de Pantalla
+### 🖼️Capturas de Pantalla
 <img width="1343" height="662" alt="image" src="https://github.com/user-attachments/assets/193d6e56-cd73-4120-8f15-b569790b4c4d" />
 <img width="1335" height="649" alt="image" src="https://github.com/user-attachments/assets/46cbffcc-d099-4cd2-af87-dbcb0e54fc28" />
 <img width="1279" height="638" alt="image" src="https://github.com/user-attachments/assets/9db95f21-dc6b-4522-8df3-3c3a2aeaf28b" />

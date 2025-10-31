@@ -36,7 +36,6 @@
 - 🌐 **HTML5** – Estructura semántica  
 - 🎨 **CSS3** – Estilos personalizados y responsive  
 - 🪶 **Bootstrap 5** – Diseño moderno  
-- ⚡ **JavaScript** – Interactividad básica  
 
 ### 🗄️ Base de Datos
 - 💾 **SQLite** – Entorno local  

@@ -12,16 +12,20 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_migrate import Migrate
+from dotenv import load_dotenv
 #creamos una instancia del framework y la asignamos a la variable app
 #empezamos a configurarla, esta tendra una llave secreta
 #le decimos que SQLALCHEMY_DATABASE_URI va a hacer 'sqlite:///database.db' esta es nuestra base de datos si no existe se crea automaticamente cuando se ejecute
 #lo ultimo es mas que todo para disminuir el consumo de memoria ya que no necesitamos el seguimiento de modificaciones
+load_dotenv()  # 🔹 Carga las variables del archivo .env
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'tasknova-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #aca asignamos a la variable db el SQLAlchemy(app) esta sera la variable con que trabajaremos nuestra base de datos
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 # Modelos
 #Creamos nuestra primera tabla con nombre 'users'
 #dentro de esta tabla trabajaremos con las sguientes columnas que almanceran los datos las columnas estar proporcionda como lo siguiente:
